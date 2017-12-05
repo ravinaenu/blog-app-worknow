@@ -6,11 +6,15 @@ import {Blogs} from '../api/blogs';
 
 import BlogListHeader from './BlogListHeader';
 import BlogListItem from './BlogListItem';
+import BlogListEmptyItem from './BlogListEmptyItem';
+
 
 export const BlogList = (props) => {
   return (
     <div>
       <BlogListHeader />
+      <BlogListEmptyItem />
+      
       {props.blogs.map((blog)=> {
         return <BlogListItem key={blog._id} blog ={blog}/>
       })}
