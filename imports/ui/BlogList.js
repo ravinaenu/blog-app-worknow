@@ -1,6 +1,7 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
+import {Session} from 'meteor/session';
 
 import {Blogs} from '../api/blogs';
 
@@ -28,9 +29,17 @@ BlogList.propTypes = {
 };
 
 export default createContainer(()=>{
+
+  const selectedBlogId = Session.get('selectedBlogId');
+
   Meteor.subscribe('blogs');
   return {
-    blogs: Blogs.find().fetch()
+    blogs: Blogs.find().fetch().map((blog)=>{
+      return {
+        ...blog,
+        selected: blog._id === selectedBlogId
+      }
+    })
   };
 
 }, BlogList);

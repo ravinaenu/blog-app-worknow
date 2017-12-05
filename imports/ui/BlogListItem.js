@@ -10,6 +10,7 @@ export const BlogListItem = (props) => {
       props.Session.set('selectedBlogId', props.blog._id);
     }}>
       <h5>{props.blog.title || 'Untitled Blog'}</h5>
+      {props.blog.selected ? 'selected': undefined}
       <p>{moment(props.blog.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
     </div>
   );
