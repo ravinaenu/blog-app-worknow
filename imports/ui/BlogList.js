@@ -13,8 +13,9 @@ export const BlogList = (props) => {
   return (
     <div>
       <BlogListHeader />
-      <BlogListEmptyItem />
       
+      {props.blogs.length === 0 ? <BlogListEmptyItem /> : undefined}
+
       {props.blogs.map((blog)=> {
         return <BlogListItem key={blog._id} blog ={blog}/>
       })}
