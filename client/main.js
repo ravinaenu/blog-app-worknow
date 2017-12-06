@@ -9,7 +9,8 @@ import { browserHistory } from 'react-router';
 
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId();
-  onAuthChange(isAuthenticated);
+  const currentPageAuth = Session.get('currentPageAuth');
+  onAuthChange(isAuthenticated, currentPageAuth);
 });
 
 Tracker.autorun( ()=>{

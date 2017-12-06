@@ -8,34 +8,18 @@ import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import { Session } from 'meteor/session';
 
-const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/dashboard'];
-const onEnterPublicPage = () => {
-  if (Meteor.userId()) {
-    browserHistory.replace('/dashboard');
-  }
-};
-const onEnterPrivatePage = () => {
-  if (!Meteor.userId()) {
-    browserHistory.replace('/');
-  }
-};
 
 const onEnterBlogPage = (nextState) => {
-  if (!Meteor.userId()) {
-    browserHistory.replace('/');
-  }
-  else {
-    Session.set('selectedBlogId', nextState.params.id);
-  }
+
+  Session.set('selectedBlogId', nextState.params.id);
 
 };
 
 
-export const onAuthChange = (isAuthenticated) => {
-  const pathname = browserHistory.getCurrentLocation().pathname;
-  const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
-  const isAuthenticatedPage = authenticatedPages.includes(pathname);
+export const onAuthChange = (isAuthenticated, currentPageAuth) => {
+  
+  const isUnauthenticatedPage = currentPageAuth === 'unauth';
+  const isAuthenticatedPage = currentPageAuth === 'auth';
 
   if (isUnauthenticatedPage && isAuthenticated) {
     browserHistory.replace('/dashboard');
@@ -43,12 +27,35 @@ export const onAuthChange = (isAuthenticated) => {
     browserHistory.replace('/');
   }
 };
+
+export const globalOnChange = (pevState, nextState)=>{
+  // const lastRoute = nextState.routes[nextState.routes.length-1];
+  // Session.set('currentPageAuth', lastRoute.privacy);
+
+  globalOnEnter(nextState);
+  
+};
+
+export const globalOnEnter = (nextState)=> {
+
+  const lastRoute = nextState.routes[nextState.routes.length-1];
+  Session.set('currentPageAuth', lastRoute.privacy);
+  
+};
+
+const onLeavehandler = () => {
+  Session.set('selectedBlogId', undefined);
+}
+
+
 export const routes = (
   <Router history={browserHistory}>
-    <Route path="/" component={Login} onEnter={onEnterPublicPage}/>
-    <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
-    <Route path="/dashboard" component={Dashboard} onEnter={onEnterPrivatePage}/>
-    <Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterBlogPage}/>
-    <Route path="*" component={NotFound}/>
+    <Route onEnter={globalOnEnter} onChange={globalOnChange}>
+      <Route path="/" component={Login} privacy = "unauth" />
+      <Route path="/signup" component={Signup} privacy = "unauth" />
+      <Route path="/dashboard" component={Dashboard} privacy = "auth" />
+      <Route path="/dashboard/:id" component={Dashboard} privacy = "auth" onEnter={onEnterBlogPage} onLeave = {onLeavehandler}/>
+      <Route path="*" component={NotFound}/>
+    </Route>
   </Router>
 );
