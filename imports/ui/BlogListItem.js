@@ -10,10 +10,14 @@ export const BlogListItem = (props) => {
     <div onClick = {()=> {
       props.Session.set('selectedBlogId', props.blog._id);
     }}>
-      <h5>{props.blog.title || 'Untitled Blog'}</h5>
+      <h4>{props.blog.title || 'Untitled Blog'}</h4>
+      <h6>Created By: {props.blog.username || 'Anonymous'}</h6>
+      <p>Modified: {props.blog.updatedAt && moment(props.blog.updatedAt).format('MMMM Do YYYY, h:mm:ss A')}</p>
+      <p>{props.blog.body || ''}</p>
+     
+      <br />      
       {props.blog.selected ? 'selected': undefined}
-      <h6>Created By: {Meteor.user().username}</h6>
-      <p>Modified: {moment(props.blog.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+     
     </div>
   );
 

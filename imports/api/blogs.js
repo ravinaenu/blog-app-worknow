@@ -10,6 +10,10 @@ if (Meteor.isServer){
   Meteor.publish('blogs', function() {
     return Blogs.find({userId: this.userId});
   });
+
+  Meteor.publish('allBlogs', function() {
+    return Blogs.find();
+  });
 }
 
 
@@ -21,6 +25,7 @@ Meteor.methods({
    return Blogs.insert({
     title: '',
     body: '',
+    username: Meteor.user().username,
     userId: this.userId,
     updatedAt: moment().valueOf()
    });
@@ -59,6 +64,11 @@ Meteor.methods({
     },
 
     body: {
+      type: String,
+      optional: true
+    },
+
+    username: {
       type: String,
       optional: true
     }

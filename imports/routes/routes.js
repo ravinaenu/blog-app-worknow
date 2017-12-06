@@ -7,6 +7,7 @@ import Dashboard from '../ui/Dashboard';
 import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import { Session } from 'meteor/session';
+import  NotLoggedInBlog  from '../ui/NotLoggedInBlogs';
 
 
 const onEnterBlogPage = (nextState) => {
@@ -51,7 +52,8 @@ const onLeavehandler = () => {
 export const routes = (
   <Router history={browserHistory}>
     <Route onEnter={globalOnEnter} onChange={globalOnChange}>
-      <Route path="/" component={Login} privacy = "unauth" />
+      <Route path="/" component={NotLoggedInBlog} privacy = "unauth" />
+      <Route path="/login" component={Login} privacy = "unauth" />
       <Route path="/signup" component={Signup} privacy = "unauth" />
       <Route path="/dashboard" component={Dashboard} privacy = "auth" />
       <Route path="/dashboard/:id" component={Dashboard} privacy = "auth" onEnter={onEnterBlogPage} onLeave = {onLeavehandler}/>
