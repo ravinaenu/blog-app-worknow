@@ -4,13 +4,19 @@ import { Link } from 'react-router';
 
 const PrivateBeforeLoginHeader = (props) => {
   return (
-    <div className="header">
-      <div className="header__content">
-        <h1 className="header__title">{props.title}</h1>
-        <Link to="/login"> Login/Signup </Link>
-        {/*<button className="button button--link-text" onClick={() => browserHistory.replace('/login')}>Login/Signup</button> */}
-      </div>
+    
+    <div className="ui top attached menu">
+        <div className="ui left aligned item">
+        <h3 className="ui header blue">{props.title} </h3>
+           
+        </div>
+
+        <div className="ui right aligned item">
+            <Link to="/login" className="ui red basic button"> Login / Signup </Link>
+           
+        </div>
     </div>
+
   );
 };
 

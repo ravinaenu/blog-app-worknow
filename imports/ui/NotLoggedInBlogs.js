@@ -14,12 +14,20 @@ export const NotLoggedInBlogs = (props) => {
   return (
     <div>
       <PrivateBeforeLoginHeader title="My Blogs App" />
-      
+      <br />
       {props.blogs.length === 0 ? <BlogListEmptyItem /> : undefined}
+      
+      <div className="ui grid centered">
+      
+        <div className="twelve wide column">
+          {props.blogs.map((blog)=> {
+            return <BlogListItem key={blog._id} blog ={blog}/>
+          })}
+        </div>
+       
+      </div>
 
-      {props.blogs.map((blog)=> {
-        return <BlogListItem key={blog._id} blog ={blog}/>
-      })}
+      
     </div>
   );
 };
@@ -38,7 +46,8 @@ export default createContainer(()=>{
       return {
         ...blog
       }
-    })
+    }),
+    response: true
   };
 
 }, NotLoggedInBlogs);
