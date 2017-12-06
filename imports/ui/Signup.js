@@ -2,11 +2,23 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 
+import {avatar } from '../client/constant/avatar';
+
+import PrivateBeforeLoginHeader from './PrivateBeforeLoginHeader';
+const linkStyle = {
+  color: 'purple',
+  float: 'right',
+  marginTop: '15px'
+}
+
+
+
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: ''
+      error: '',
+      loader: false
     };
   }
   onSubmit(e) {
@@ -20,36 +32,80 @@ export default class Signup extends React.Component {
     //   return this.setState({error: 'Must enter a valid username and email'});
     // }
 
-    if (password.length < 9) {
-      return this.setState({error: 'Password must be more than 8 characters long'});
+    if (!username || !email || !password) {
+      return this.setState({error: 'Fields should not be blank', loader: false});
     }
 
-    Accounts.createUser({email, password, username}, (err) => {
+    if (password.length < 9) {
+      return this.setState({error: 'Password must be more than 8 characters long', loader: false});
+    }
+    this.setState({error: '', loader: true});
+
+    let avatarNum = Math.floor((Math.random() * 15));
+    let avatarName = avatar[avatarNum].name;
+    let avatarColor = avatar[avatarNum].color;
+    
+    Accounts.createUser({email, password, username, profile: {avatarName, avatarColor}}, (err) => {
       if (err) {
-        this.setState({error: err.reason});
+        this.setState({error: err.reason, loader: false});
       } else {
-        this.setState({error: ''});
+        this.setState({error: '', loader: false});
       }
     });
   }
   render() {
+   
     return (
-      <div className="boxed-view">
-        <div className="boxed-view__box">
-          <h1>Join </h1>
-
-          {this.state.error ? <p>{this.state.error}</p> : undefined}
-
-          <form onSubmit={this.onSubmit.bind(this)} noValidate className="boxed-view__form">
-            <input type="text" ref="username" name="username" placeholder="Username"/>
-            <input type="email" ref="email" name="email" placeholder="Email"/>
-            <input type="password" ref="password" name="password" placeholder="Password"/>
-            <button className="button">Create Account</button>
+      <div>
+      <PrivateBeforeLoginHeader title="My Blogs App" mainTitle="SIGNUP" signupPage />
+      <br />
+      
+      <div className="ui grid centered">
+    
+      <div className="twelve wide column">
+      <br />  
+      <div className="ui raised segment">
+        <form className={"ui form error " + (this.state.loader ? 'loading' : '')} onSubmit={this.onSubmit.bind(this)} noValidate >
+         
+          {this.state.error ?
+            <div className="ui error message">
+              <div className="header">Error</div>
+              <p>{this.state.error}</p>
+            </div>
+            : undefined
+          }
+             <div className="field">
+              <label>User Name</label>
+              <input type="text" ref="username" name="username" placeholder="Username123" />
+            </div>
+            <div className="field">
+              <label>Email</label>
+              <input type="email" ref="email" name="email" placeholder="Email - abc@xyz.com" />
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <input type="password" ref="password" name="password" placeholder="Password" />
+            </div>
+            <div className="ui grid centered">
+              <div className="six wide column field">
+                <button className="ui blue fluid basic button" type="submit"><i className="add user icon"></i> Create Account</button>
+              </div>
+            </div>
+            
+            <div className="field">
+             
+                <Link to="/login" style={linkStyle}>Already have an account?</Link>
+              
+            </div>
+            <br />
+            
           </form>
-
-          <Link to="/">Already have an account?</Link>
         </div>
       </div>
+     
+    </div>
+    </div>
+  
     );
   }
 }

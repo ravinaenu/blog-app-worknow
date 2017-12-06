@@ -5,7 +5,7 @@ import {Session} from 'meteor/session';
 
 import {Blogs} from '../api/blogs';
 
-import BlogListHeader from './BlogListHeader';
+
 import BlogListItem from './BlogListItem';
 import BlogListEmptyItem from './BlogListEmptyItem';
 
@@ -13,9 +13,8 @@ import BlogListEmptyItem from './BlogListEmptyItem';
 export const BlogList = (props) => {
   return (
     <div>
-      <BlogListHeader />
-      
-      {props.blogs.length === 0 ? <BlogListEmptyItem /> : undefined}
+            
+      {props.blogs.length === 0 ? <BlogListEmptyItem msg="No blogs to display" /> : undefined}
 
       {props.blogs.map((blog)=> {
         return <BlogListItem key={blog._id} blog ={blog}/>

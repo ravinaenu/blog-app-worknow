@@ -2,6 +2,9 @@ import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import { Link } from 'react-router';
 
+const headerCenterTextStyle = {
+  marginTop: '12px'
+};
 const PrivateBeforeLoginHeader = (props) => {
   return (
     
@@ -11,9 +14,23 @@ const PrivateBeforeLoginHeader = (props) => {
            
         </div>
 
-        <div className="ui right aligned item">
-            <Link to="/login" className="ui red basic button"> Login / Signup </Link>
+        {props.mainTitle && 
+        <div className="ui center " style={headerCenterTextStyle}>
+         
+            <h2 className="ui header black" > {props.mainTitle} </h2>
            
+        </div>
+        }
+
+        <div className="ui right aligned item">
+            { (props.loginPage) 
+              ? <Link to="/signup" className="ui red basic button">  Signup </Link>
+
+              : (props.signupPage)
+              ?  <Link to="/login" className="ui red basic button"> Login </Link>
+
+              : <Link to="/login" className="ui red basic button"> Login / Signup </Link>
+            }
         </div>
     </div>
 
@@ -21,7 +38,8 @@ const PrivateBeforeLoginHeader = (props) => {
 };
 
 PrivateBeforeLoginHeader.propTypes = {
-  title: React.PropTypes.string
+  title: React.PropTypes.string,
+  mainTitle: React.PropTypes.string
 };
 
 export default PrivateBeforeLoginHeader;

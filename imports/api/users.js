@@ -14,3 +14,4 @@ Accounts.validateNewUser((user) => {
 
   return true;
 });
+

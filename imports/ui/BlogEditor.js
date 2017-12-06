@@ -18,7 +18,7 @@ export class BlogEditor extends React.Component{
 
 
 handleBodyChange(e){
-  const body =e.target.value;
+  const body = e.target.value;
   this.setState({body})
   this.props.call('blogs.update',this.props.blog._id, {body});
 }
@@ -49,24 +49,73 @@ componentDidUpdate(prevProps, prevState) {
 
     if (this.props.blog){
       return (
-        <div>
-          <input value ={this.state.title} placeholder= "Title here" onChange ={this.handleTitleChange.bind(this)}/>
-          
-          <textarea value ={this.state.body} placeholder= "Description here" onChange ={this.handleBodyChange.bind(this)}></textarea>
-          <button onClick = {this.deletehandler.bind(this)}>Delete Blog</button>
+        <div className="ui grid centered">
+          <div className="fourteen wide column">
+          <br />  
+          <div className="ui raised segment">
+            <form className="ui form">
+             
+              {this.state.error ?
+                <div className="ui error message">
+                  <div className="header">Error</div>
+                  <p>{this.state.error}</p>
+                </div>
+                : undefined
+              }
+  
+                <div className="field">
+                  <label>Title</label>
+                  <input value ={this.state.title} placeholder= "Title here" onChange ={this.handleTitleChange.bind(this)} />
+                </div>
+                <div className="field">
+                  <label>Description</label>
+                  <textarea value ={this.state.body} placeholder= "Description here" onChange ={this.handleBodyChange.bind(this)}></textarea>
+                </div>
+                <div className="ui grid centered">
+                  <div className="eight wide column field">
+                    <button className="ui red fluid basic button" onClick={this.deletehandler.bind(this)} ><i className="remove circle icon"></i> Delete Blog </button>
+                  </div>
+                </div>
+                               
+              </form>
+            </div>
+          </div>
+         
         </div>
+        
+
       );
     
     }
-    else if (this.props.selectedBlogId){
+    else if (this.props.selectedBlogId) {
       return (
-        <p>Note not Found</p>
+        <div className="ui grid centered">
+        
+          <div className="thirteen wide column">
+            <br />
+          <div className="ui inverted red segment">
+            <p> Blog Not Found</p>
+         
+          </div> 
+         </div> 
+        </div>
       );
     
     }
     else {
       return (
-        <p>Select or Create a BlogPost to get started</p>
+        <div className="ui grid centered">
+        
+          <div className="fourteen wide column">
+            <br />
+            <div className="ui orange segment">
+              <p className="ui yellow header"> Select or Create a blog post to get started <i className="smile icon orange"></i> </p>
+            </div>
+            
+           </div>
+         
+        </div>
+        
       );
     }
     

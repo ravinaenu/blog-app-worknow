@@ -10,13 +10,15 @@ import BlogListItem from './BlogListItem';
 import BlogListEmptyItem from './BlogListEmptyItem';
 import PrivateBeforeLoginHeader from './PrivateBeforeLoginHeader';
 
+
 export const NotLoggedInBlogs = (props) => {
   return (
     <div>
-      <PrivateBeforeLoginHeader title="My Blogs App" />
+      <PrivateBeforeLoginHeader title="My Blogs App" mainTitle="WELCOME" />
       <br />
-      {props.blogs.length === 0 ? <BlogListEmptyItem /> : undefined}
-      
+     
+      {props.blogs.length === 0 ? <BlogListEmptyItem msg="No blogs to display, Login to create new blogs"/> : undefined}
+    
       <div className="ui grid centered">
       
         <div className="twelve wide column">
@@ -38,16 +40,14 @@ NotLoggedInBlogs.propTypes = {
 
 export default createContainer(()=>{
 
- 
+   Meteor.subscribe('allBlogs');
 
-  Meteor.subscribe('allBlogs');
-  return {
+   return {
     blogs: Blogs.find({}, {sort: {updatedAt: -1}}).fetch().map((blog)=>{
       return {
         ...blog
       }
-    }),
-    response: true
+    })
   };
 
 }, NotLoggedInBlogs);

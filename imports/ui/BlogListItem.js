@@ -4,6 +4,10 @@ import {Session} from 'meteor/session';
 import {createContainer} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 
+//const avatarName = Meteor.user().profile.avatarName;
+//const avatarColor = Meteor.user().profile.avatarColor;
+
+
 export const BlogListItem = (props) => {
  
    return (
@@ -11,9 +15,9 @@ export const BlogListItem = (props) => {
       props.Session.set('selectedBlogId', props.blog._id);
     }}>
         
-        <div className="ui fluid raised card blue">
+        <div className="ui fluid raised card blue ">
       <div className="content">
-        <div className="header">{props.blog.title || 'Untitled Blog' }</div>
+        <div className="header">{props.blog.title || 'Default Title' }</div>
         <div className="meta">
           <span className="right floated time">{props.blog.updatedAt && moment(props.blog.updatedAt).format('MMMM Do YYYY, h:mm A')}</span>
           <span className="category">Blog</span>
@@ -28,8 +32,15 @@ export const BlogListItem = (props) => {
         </div>
       </div>
     </div>
-         
-      {props.blog.selected ? 'selected': undefined}
+     { props.blog.selected &&
+
+        <div className="ui grid centered">
+          <div className="six wide column field">
+            <a className="ui pointing pink basic label"><i className="star icon"></i>Selected &nbsp; <i className="star icon"></i></a>
+          </div>
+        </div>
+
+     }
       <div className="ui divider"></div>
     </div>
   );
