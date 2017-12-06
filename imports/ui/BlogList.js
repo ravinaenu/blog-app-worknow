@@ -34,7 +34,7 @@ export default createContainer(()=>{
 
   Meteor.subscribe('blogs');
   return {
-    blogs: Blogs.find().fetch().map((blog)=>{
+    blogs: Blogs.find({}, {sort: {updatedAt: -1}}).fetch().map((blog)=>{
       return {
         ...blog,
         selected: blog._id === selectedBlogId
