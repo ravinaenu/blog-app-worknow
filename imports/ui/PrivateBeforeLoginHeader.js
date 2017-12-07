@@ -10,7 +10,7 @@ const PrivateBeforeLoginHeader = (props) => {
     
     <div className="ui top attached menu">
         <div className="ui left aligned item">
-        <h3 className="ui header blue">{props.title} </h3>
+        <h3 className="ui header blue"> <Link to="/"> {props.title} </Link> </h3>
            
         </div>
 

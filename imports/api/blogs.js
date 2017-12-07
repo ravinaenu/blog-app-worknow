@@ -26,6 +26,8 @@ Meteor.methods({
     title: '',
     body: '',
     username: Meteor.user().username,
+    avatar: Meteor.user().profile.avatarName,
+    theme: Meteor.user().profile.avatarColor,
     userId: this.userId,
     updatedAt: moment().valueOf()
    });
@@ -69,6 +71,15 @@ Meteor.methods({
     },
 
     username: {
+      type: String,
+      optional: true
+    },
+
+    avatar: {
+      type: String,
+      optional: true
+    },
+    theme: {
       type: String,
       optional: true
     }

@@ -4,9 +4,6 @@ import {Session} from 'meteor/session';
 import {createContainer} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 
-//const avatarName = Meteor.user().profile.avatarName;
-//const avatarColor = Meteor.user().profile.avatarColor;
-
 
 export const BlogListItem = (props) => {
  
@@ -14,8 +11,9 @@ export const BlogListItem = (props) => {
     <div onClick = {()=> {
       props.Session.set('selectedBlogId', props.blog._id);
     }}>
-        
-        <div className="ui fluid raised card blue ">
+
+       
+        <div className={"ui fluid raised card " + (props.blog.theme ? props.blog.theme : 'blue')} >
       <div className="content">
         <div className="header">{props.blog.title || 'Default Title' }</div>
         <div className="meta">
@@ -28,14 +26,14 @@ export const BlogListItem = (props) => {
       </div>
       <div className="extra content">
         <div className="right floated author">
-          <img className="ui avatar image" src="images/Twemoji2_1f916.svg" /> <span className="ui blue basic label">{props.blog.username || 'Anonymous'} </span>
+          <img className="ui avatar image" src={"images/" +(props.blog.avatar ? props.blog.avatar : 'Twemoji2_1f916') + ".svg" } /> <span className={"ui basic label "  + (props.blog.theme ? props.blog.theme : 'blue')}>{props.blog.username || 'Anonymous'} </span>
         </div>
       </div>
     </div>
      { props.blog.selected &&
 
         <div className="ui grid centered">
-          <div className="six wide column field">
+          <div className="four wide column">
             <a className="ui pointing pink basic label"><i className="star icon"></i>Selected &nbsp; <i className="star icon"></i></a>
           </div>
         </div>

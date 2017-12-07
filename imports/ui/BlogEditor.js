@@ -5,6 +5,8 @@ import {Blogs} from '../api/blogs';
 import {Meteor} from 'meteor/meteor';
 import { Router, browserHistory } from 'react-router';
 
+
+
 export class BlogEditor extends React.Component{
  constructor(props){
    super(props);
@@ -14,8 +16,6 @@ export class BlogEditor extends React.Component{
      body: ''
    };
  }
-
-
 
 handleBodyChange(e){
   const body = e.target.value;
@@ -69,7 +69,9 @@ componentDidUpdate(prevProps, prevState) {
                 </div>
                 <div className="field">
                   <label>Description</label>
-                  <textarea value ={this.state.body} placeholder= "Description here" onChange ={this.handleBodyChange.bind(this)}></textarea>
+                 
+                  <textarea id="desc" value ={this.state.body} placeholder= "Description here" onChange ={this.handleBodyChange.bind(this)}></textarea>
+                  
                 </div>
                 <div className="ui grid centered">
                   <div className="eight wide column field">
