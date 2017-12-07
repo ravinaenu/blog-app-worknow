@@ -22,7 +22,8 @@ Feature:
 	# CRUD functionality for Blogs with Real Time updates
 	# Login & Signup for the Users
 	# Pokemon Avatar & Unique Color Theme for each users
-	# Clean UI with the help of Sementic UI library	 
+	# Clean UI with the help of Sementic UI library
+	# the blogs are displayed in a sorted manner, latest updated blog post at the top
 
 Limitations:
 
