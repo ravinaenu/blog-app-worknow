@@ -26,9 +26,8 @@ Feature:
 
 Limitations:
 
-	# On My Blogs page i.e. '/dashboard', sometimes avatar images are not getting displayed
-	# On Create blog, it creates a default blog with a default title, you need to manually delete it to discard it from the server
-	# On Delete blog, its doing a full page refresh
+	# On My Blogs page i.e. '/dashboard', sometimes avatar images are not getting displayed.
+	# On Delete blog, its doing a full page refresh, in order render the blogList again
 	# Users don't have choice over which Blog to Publish for public view. Once Blog Created, it is published for public view in real time.
 
 future improvements:
