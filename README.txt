@@ -1,5 +1,5 @@
 
-Introduction:
+##Introduction:
 
 This is a Blog App created with React and Meteor. It has basic CRUD functionality for users once in Logged in. At the root of the app, viewers can see all the publlished Apps and then choose to Login/Signup. 
 
@@ -9,7 +9,7 @@ How the CRUD functionality works in the App:
 	Update- Once Blog Created, if you click on the blog, the editor form opens and lets user make changes to title and body fields
 	Delete- Once clicked on the app, the form comes with a delete button that will let users delete the blog
 
-How to Run:
+##How to Run:
 
 Run the following command in terminal:
 Meteor run
@@ -17,7 +17,7 @@ Meteor run
 Open Browser to the server displayed in terminal 
 
 
-Feature:
+##Additional Feature:
 
 	# CRUD functionality for Blogs with Real Time updates
 	# Login & Signup for the Users
@@ -25,13 +25,13 @@ Feature:
 	# Clean UI with the help of Sementic UI library
 	# the blogs are displayed in a sorted manner, latest updated blog post at the top
 
-Limitations:
+##Limitations:
 
 	# On My Blogs page i.e. '/dashboard', sometimes avatar images are not getting displayed.
 	# On Delete blog, its doing a full page refresh, in order render the blogList again
-	# Users don't have choice over which Blog to Publish for public view. Once Blog Created, it is published for public view in real time.
+	# Users don't have choice over which Blog to Publish for public view. Once Blog Created, it is published for public view in real 	   time.
 
-future improvements:
+##Future Improvements:
 
 	# Rich Text Editor to create Blogs
 	# Lazy Loading or Pagination to display Blogs List
