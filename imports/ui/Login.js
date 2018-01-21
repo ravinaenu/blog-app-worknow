@@ -40,7 +40,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <PrivateBeforeLoginHeader title="My Blogs App" mainTitle="LOGIN" loginPage />
+        <PrivateBeforeLoginHeader title="WriteAway" mainTitle="LOGIN" loginPage />
         <br />
         <div className="ui grid centered">
       

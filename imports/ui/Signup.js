@@ -57,7 +57,7 @@ export default class Signup extends React.Component {
    
     return (
       <div>
-      <PrivateBeforeLoginHeader title="My Blogs App" mainTitle="SIGNUP" signupPage />
+      <PrivateBeforeLoginHeader title="WriteAway" mainTitle="SIGNUP" signupPage />
       <br />
       
       <div className="ui grid centered">

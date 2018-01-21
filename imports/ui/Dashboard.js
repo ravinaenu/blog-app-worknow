@@ -7,7 +7,7 @@ import BlogListHeader from './BlogListHeader';
 export default () => {
   return (
     <div>
-      <PrivateHeader title="My Blogs App" mainTitle="MY BLOGS" />
+      <PrivateHeader title="WriteAway" mainTitle="MY BLOGS" />
       <div className="page-content">
       <BlogListHeader />
 

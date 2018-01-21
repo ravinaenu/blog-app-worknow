@@ -14,7 +14,7 @@ import PrivateBeforeLoginHeader from './PrivateBeforeLoginHeader';
 export const NotLoggedInBlogs = (props) => {
   return (
     <div>
-      <PrivateBeforeLoginHeader title="My Blogs App" mainTitle="WELCOME" />
+      <PrivateBeforeLoginHeader title="WriteAway" mainTitle="WELCOME" />
       <br />
      
       {props.blogs.length === 0 ? <BlogListEmptyItem msg="No blogs to display, Login to create new blogs"/> : undefined}
