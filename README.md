@@ -2,7 +2,7 @@
 
 ##Introduction:
 
-This is a Blog App created with React and Meteor. It has basic CRUD functionality for users once in Logged in. At the root of the app, viewers can see all the publlished Apps and then choose to Login/Signup. 
+	This is a Blog App created with React and Meteor. It has basic CRUD functionality for users once in Logged in. At the root of the app, viewers can see all the publlished Apps and then choose to Login/Signup. 
 
 How the CRUD functionality works in the App:
 	Create- A Blog is created with Default Title and empty Body
@@ -12,10 +12,10 @@ How the CRUD functionality works in the App:
 
 ##How to Run:
 
-Run the following command in terminal:
-Meteor run
+	Run the following command in terminal:
+	Meteor run
 
-Open Browser to the server displayed in terminal 
+	Open Browser to the server displayed in terminal 
 
 
 ##Additional Feature:
